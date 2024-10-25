@@ -1,0 +1,29 @@
+.background{
+    background-image: url('../../../assets/images/biblioteca fondo.jpg'); /* Asegúrate de que la ruta sea correcta */
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+}
+
+  
+  .form-container {
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  ion-item {
+    margin-bottom: 15px;
+  }
+  
+  ion-button {
+    margin-top: 20px;
+    --background: #3880ff;
+    --color: white; /* Color del texto del botón */
+  }
+  
+  ion-label {
+    font-weight: bold;
+  }
+  

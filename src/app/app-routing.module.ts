@@ -8,8 +8,24 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'register',
     pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'task-form',
+    loadChildren: () => import('./pages/task-form/task-form.module').then( m => m.TaskFormPageModule)
+  },
+  {
+    path: 'task-list',
+    loadChildren: () => import('./pages/task-list/task-list.module').then( m => m.TaskListPageModule)
   },
 ];
 

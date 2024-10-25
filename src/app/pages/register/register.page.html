@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+  <div class="form-container">
+    <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+      <ion-item>
+        <ion-label position="floating">Nombre de Usuario</ion-label>
+        <ion-input
+          type="text"
+          [(ngModel)]="username"
+          name="username"
+          required
+          minlength="3"
+          maxlength="20"
+          pattern="[a-zA-Z0-9]*"
+        ></ion-input>
+      </ion-item>
+      <div *ngIf="registerForm.controls['username']?.invalid && (registerForm.controls['username']?.dirty || registerForm.controls['username']?.touched)">
+        <div *ngIf="registerForm.controls['username']?.errors?.['required']">El nombre de usuario es obligatorio.</div>
+        <div *ngIf="registerForm.controls['username']?.errors?.['minlength']">El nombre de usuario debe tener al menos 3 caracteres.</div>
+        <div *ngIf="registerForm.controls['username']?.errors?.['maxlength']">El nombre de usuario no puede exceder 20 caracteres.</div>
+        <div *ngIf="registerForm.controls['username']?.errors?.['pattern']">El nombre de usuario solo puede contener letras y números.</div>
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          required
+          minlength="8"
+        ></ion-input>
+      </ion-item>
+      <div *ngIf="registerForm.controls['password']?.invalid && (registerForm.controls['password']?.dirty || registerForm.controls['password']?.touched)">
+        <div *ngIf="registerForm.controls['password']?.errors?.['required']">La contraseña es obligatoria.</div>
+        <div *ngIf="registerForm.controls['password']?.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres.</div>
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Confirmar Contraseña</ion-label>
+        <ion-input
+          type="password"
+          [(ngModel)]="confirmPassword"
+          name="confirmPassword"
+          required
+        ></ion-input>
+      </ion-item>
+      <div *ngIf="confirmPassword && password !== confirmPassword">
+        <ion-text color="danger">Las contraseñas no coinciden.</ion-text>
+      </div>
+
+      <ion-button expand="full" type="submit" 
+                  [disabled]="registerForm.invalid || password !== confirmPassword">
+        Registrarse
+      </ion-button>
+
+      <ion-button expand="full" color="light" (click)="goToLogin()" style="margin-top: 10px;">
+        Ir al Login
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

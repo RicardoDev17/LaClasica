@@ -1,0 +1,70 @@
+/* General Styles */
+ion-header {
+    background-color: #007bff; 
+    color: white; /* Color del texto del encabezado */
+  }
+  
+  ion-toolbar {
+    --background: transparent; /* Fondo transparente para el toolbar */
+  }
+  
+  ion-title {
+    font-size: 24px; /* Tamaño de la fuente del título */
+    font-weight: bold; /* Negrita para el título */
+  }
+  
+  /* Estilos para el contenido */
+  ion-content {
+    --background: #f8f9fa; /* Fondo claro para el contenido */
+    padding: 16px; /* Espaciado interno */
+  }
+  
+  /* Estilos para el formulario */
+  form {
+    background-color: white; /* Fondo blanco para el formulario */
+    border-radius: 10px; /* Esquinas redondeadas */
+    padding: 20px; /* Espaciado interno */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  
+  /* Estilos para los elementos del formulario */
+  ion-item {
+    margin-bottom: 16px; /* Espaciado inferior entre elementos del formulario */
+  }
+  
+  /* Estilos para los títulos de los campos */
+  ion-label {
+    color: #333; /* Color del texto de los labels */
+  }
+  
+  /* Estilo para el botón de Agendar Tarea */
+  ion-button[type="submit"] {
+    background-color: #28a745; /* Color de fondo verde */
+    color: white; /* Color del texto */
+    margin-top: 10px; /* Margen superior */
+    font-weight: bold; /* Negrita para el texto del botón */
+    border-radius: 20px; /* Esquinas redondeadas */
+  }
+  
+  /* Estilo para el botón de Ver mis tareas */
+  ion-button[color="light"] {
+    background-color: #f8f9fa; /* Color de fondo claro */
+    color: #007bff; /* Color del texto azul */
+    margin-top: 10px; /* Margen superior */
+    border-radius: 20px; /* Esquinas redondeadas */
+  }
+  
+  /* Estilos para los inputs */
+  ion-input,
+  ion-datetime {
+    background-color: #f0f0f0; /* Fondo claro para los inputs */
+    border-radius: 8px; /* Esquinas redondeadas para los inputs */
+  }
+  
+  /* Estilo para los mensajes de error del formulario */
+  .error-message {
+    color: red; /* Color rojo para mensajes de error */
+    font-size: 12px; /* Tamaño de fuente más pequeño */
+    margin-top: 4px; /* Margen superior */
+  }
+  

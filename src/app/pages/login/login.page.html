@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+  <form (submit)="login()" class="form-container">
+    <ion-item>
+      <ion-label position="floating">Nombre de usuario</ion-label>
+      <ion-input [(ngModel)]="username" name="username" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input [(ngModel)]="password" name="password" type="password" required></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" type="submit">Iniciar sesión</ion-button>
+
+    <ion-button expand="full" color="light" (click)="goToRegister()" style="margin-top: 10px;">
+      Ir a Registro
+    </ion-button>
+  </form>
+</ion-content>

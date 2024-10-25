@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Tareas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="tasks.length > 0">
+    <ion-item *ngFor="let task of tasks">
+      <ion-label>
+        <h2>{{ task.title }}</h2>
+        <p>{{ task.description }}</p>
+        <p><strong>Fecha de vencimiento:</strong> {{ task.dueDate }}</p>
+        <p><strong>Hora de alarma:</strong> {{ task.alarmTime }}</p>
+      </ion-label>
+      <ion-button (click)="deleteTask(task.id)" color="danger" slot="end">
+        Eliminar
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="full" color="light" (click)="goToTaskForm()" style="margin-top: 10px;">
+    Asignar más tareas
+  </ion-button>
+
+  <ion-item *ngIf="tasks.length === 0">
+    <ion-label>No hay tareas asignadas.</ion-label>
+  </ion-item>
+</ion-content>

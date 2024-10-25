@@ -1,0 +1,68 @@
+/* General Styles */
+ion-header {
+    background-color: #007bff; /* Color de fondo del encabezado */
+    color: white; /* Color del texto del encabezado */
+  }
+  
+  ion-toolbar {
+    --background: transparent; /* Fondo transparente para el toolbar */
+  }
+  
+  ion-title {
+    font-size: 24px; /* Tamaño de la fuente del título */
+    font-weight: bold; /* Negrita para el título */
+  }
+  
+  /* Estilos para el contenido */
+  ion-content {
+    --background: #f8f9fa; /* Fondo claro para el contenido */
+    padding: 16px; /* Espaciado interno */
+  }
+  
+  /* Estilos para la lista de tareas */
+  ion-list {
+    border-radius: 10px; /* Esquinas redondeadas para la lista */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    margin-bottom: 20px; /* Espaciado inferior */
+  }
+  
+  /* Estilos para los elementos de la lista */
+  ion-item {
+    background-color: white; /* Fondo blanco para los elementos */
+    border-radius: 8px; /* Esquinas redondeadas */
+    margin-bottom: 10px; /* Espaciado inferior entre elementos */
+    padding: 16px; /* Espaciado interno */
+  }
+  
+  /* Estilos para los títulos y descripciones de las tareas */
+  h2 {
+    font-size: 18px; /* Tamaño del título de la tarea */
+    color: #333; /* Color del título */
+    margin: 0; /* Sin margen */
+  }
+  
+  p {
+    color: #666; /* Color de texto para las descripciones */
+    margin: 4px 0; /* Margen vertical para el párrafo */
+  }
+  
+  /* Estilo para el botón de eliminar */
+  ion-button {
+    border-radius: 20px; /* Esquinas redondeadas para el botón */
+    font-weight: bold; /* Negrita para el texto del botón */
+  }
+  
+  /* Estilo para el botón de asignar más tareas */
+  ion-button[expand="full"] {
+    background-color: #28a745; /* Color de fondo verde */
+    color: white; /* Color del texto */
+    margin-top: 20px; /* Espaciado superior */
+  }
+  
+  /* Estilo para el mensaje cuando no hay tareas */
+  ion-item {
+    text-align: center; /* Centrar el texto */
+    font-size: 16px; /* Tamaño de la fuente */
+    color: #888; /* Color gris para el texto */
+  }
+  
