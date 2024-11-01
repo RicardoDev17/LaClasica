@@ -45,7 +45,7 @@
       ></ion-datetime>
     </ion-item>
 
-    <ion-button expand="full" type="submit" [disabled]="taskForm.invalid">
+    <ion-button expand="full" type="submit" [disabled]="taskForm.invalid" (click)="goToTaskList()">
       Agendar Tarea
     </ion-button>
 

@@ -15,15 +15,15 @@ export class AuthService {
 
   async register(username: string, password: string) {
     const user = { username, password };
-    await this.storage.set(username, user); // Almacenar el usuario
-    return true; // Registro exitoso
+    await this.storage.set(username, user);
+    return true;
   }
 
   async login(username: string, password: string) {
     const user = await this.storage.get(username);
     if (user && user.password === password) {
-      return true; // Login exitoso
+      return true;
     }
-    return false; // Login fallido
+    return false;
   }
 }

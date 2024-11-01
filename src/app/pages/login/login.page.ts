@@ -16,15 +16,14 @@ export class LoginPage {
   async login() {
     const result = await this.authService.login(this.username, this.password);
     if (result) {
-      // Navegar a la página principal o a donde desees después de iniciar sesión
+      
       this.router.navigate(['/task-form']);
     } else {
-      // Manejar el error de login
       console.error('Error en el login');
     }
   }
 
   goToRegister() {
-    this.router.navigate(['/register']); // Cambia a la ruta de registro
+    this.router.navigate(['/register']);
   }
 }
