@@ -1,0 +1,35 @@
+.advice-section {
+    margin: 16px;
+    text-align: center;
+  }
+  
+  ion-card {
+    border-radius: 15px;
+    background: linear-gradient(135deg, #0077b6, #90e0ef);
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  ion-card-header {
+    font-size: 1.4rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    padding: 10px;
+  }
+  
+  .advice-icon {
+    font-size: 1.8rem;
+    margin-right: 8px;
+    color: #ffd700;
+  }
+  
+  ion-card-content {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    padding: 16px;
+    text-align: center;
+  }
+  

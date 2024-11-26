@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { TasksPageRoutingModule } from './tasks-routing.module';
+import { PendingTasksPageRoutingModule } from './pending-tasks-routing.module';
 
-import { TasksPage } from './tasks.page';
+import { PendingTasksPage } from './pending-tasks.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TasksPageRoutingModule
+    PendingTasksPageRoutingModule
   ],
-  declarations: [TasksPage]
+  declarations: [PendingTasksPage]
 })
-export class TasksPageModule {}
+export class PendingTasksPageModule {}

@@ -22,7 +22,7 @@ export class LoginPage {
     const success = await this.authService.login(this.email, this.password);
     if (success) {
       alert('Inicio de sesión exitoso');
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/assign-task'); // Cambia '/home' por '/assign-task'
     } else {
       alert('Credenciales incorrectas. Inténtalo de nuevo.');
     }

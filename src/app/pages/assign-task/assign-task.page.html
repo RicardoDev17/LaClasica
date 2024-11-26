@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Asignar Tarea</ion-title>
+    <ion-buttons slot="end">
+      <!-- Botón para ver tareas pendientes -->
+      <ion-button routerLink="/pending-tasks">
+        <ion-icon slot="icon-only" name="list-outline"></ion-icon>
+      </ion-button>
+      <!-- Botón de logout -->
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="onSubmit()" class="form-container">
+    <!-- Campo para el título -->
+    <ion-item>
+      <ion-label position="floating">Título de la Tarea</ion-label>
+      <ion-input
+        [(ngModel)]="task.title"
+        name="title"
+        required
+        #titleInput="ngModel">
+      </ion-input>
+    </ion-item>
+    <ion-note *ngIf="titleInput.invalid && titleInput.touched" color="danger">
+      <span>El título es obligatorio.</span>
+    </ion-note>
+
+    <!-- Campo para la descripción -->
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea [(ngModel)]="task.description" name="description"></ion-textarea>
+    </ion-item>
+
+    <!-- Campo para la fecha límite -->
+    <ion-item>
+      <ion-label>Fecha Límite</ion-label>
+      <ion-datetime
+        [(ngModel)]="task.dueDate"
+        name="dueDate"
+        required>
+      </ion-datetime>
+    </ion-item>
+
+    <!-- Botón para guardar tarea -->
+    <ion-button expand="full" type="submit">Guardar Tarea</ion-button>
+  </form>
+</ion-content>
