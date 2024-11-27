@@ -15,6 +15,9 @@ import 'firebase/compat/auth';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getMessaging, provideMessaging } from '@angular/fire/messaging';
 
+import { LocalNotifications } from '@capacitor/local-notifications';
+
+
 
 @NgModule({
   declarations: [AppComponent],
