@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { Preferences } from '@capacitor/preferences';
 import { Router } from '@angular/router';
-import { Storage } from '@capacitor/storage';
 
 @Component({
   selector: 'app-assign-task',
@@ -11,45 +11,44 @@ export class AssignTaskPage {
   task = {
     title: '',
     description: '',
-    dueDate: ''
+    dueDate: '',
   };
 
   constructor(private router: Router) {}
 
   async onSubmit() {
     const user = await this.getCurrentUser();
-
     if (!user) {
       alert('No se encontró un usuario logueado.');
-      this.router.navigate(['/login']);
       return;
     }
 
-    const userEmail = user.email; // Usa el correo del usuario como clave única
-    const { value } = await Storage.get({ key: `tasks_${userEmail}` });
+    // Obtén el correo del usuario actual
+    const userEmail = user.email;
+    const { value } = await Preferences.get({ key: `tasks_${userEmail}` });
     const tasks = value ? JSON.parse(value) : [];
 
-    // Convertir la fecha límite a formato ISO
+    // Formatea la fecha correctamente antes de guardar
     this.task.dueDate = new Date(this.task.dueDate).toISOString();
 
-    // Agregar la nueva tarea
+    // Agrega la nueva tarea
     tasks.push(this.task);
 
-    // Guardar las tareas en el almacenamiento
-    await Storage.set({ key: `tasks_${userEmail}`, value: JSON.stringify(tasks) });
+    // Guarda las tareas actualizadas en el almacenamiento
+    await Preferences.set({ key: `tasks_${userEmail}`, value: JSON.stringify(tasks) });
 
     alert('Tarea guardada con éxito.');
-    this.router.navigate(['/pending-tasks']); // Redirigir a la página de tareas pendientes
+    this.router.navigate(['/pending-tasks']); // Redirige a la página de tareas pendientes
   }
 
   async logout() {
-    await Storage.remove({ key: 'user' }); // Eliminar la sesión del usuario
-    this.router.navigate(['/login']); // Redirigir al login
+    await Preferences.remove({ key: 'user' }); // Elimina al usuario logueado
+    this.router.navigate(['/login']); // Redirige al login
     alert('Has cerrado sesión.');
   }
 
   private async getCurrentUser() {
-    const { value } = await Storage.get({ key: 'user' });
+    const { value } = await Preferences.get({ key: 'user' });
     return value ? JSON.parse(value) : null;
   }
 }

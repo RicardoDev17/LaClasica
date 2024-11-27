@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Storage } from '@capacitor/storage';
+import { Preferences } from '@capacitor/preferences';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-pending-tasks',
@@ -10,13 +9,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PendingTasksPage implements OnInit {
   tasks: any[] = [];
-  advice: string = ''; // Añadimos la propiedad para el consejo
+  advice: string | null = null; // Agrega la propiedad advice
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router) {}
 
   async ngOnInit() {
     await this.loadTasks();
-    this.loadAdvice(); // Cargar el consejo al iniciar la página
+    await this.loadAdvice(); // Carga el consejo al iniciar
   }
 
   async loadTasks() {
@@ -29,20 +28,18 @@ export class PendingTasksPage implements OnInit {
     }
 
     const userEmail = user.email;
-    const { value } = await Storage.get({ key: `tasks_${userEmail}` });
+    const { value } = await Preferences.get({ key: `tasks_${userEmail}` });
     this.tasks = value ? JSON.parse(value) : [];
   }
 
-  loadAdvice() {
-    const adviceUrl = 'https://api.adviceslip.com/advice'; // URL de la API de consejos
-    this.http.get(adviceUrl).subscribe(
-      (response: any) => {
-        this.advice = response.slip.advice; // Asignar el consejo a la propiedad
-      },
-      (error) => {
-        console.error('Error al cargar el consejo:', error);
-      }
-    );
+  async loadAdvice() {
+    try {
+      const response = await fetch('https://api.adviceslip.com/advice');
+      const data = await response.json();
+      this.advice = data.slip.advice; // Almacena el consejo
+    } catch (error) {
+      console.error('Error al cargar el consejo:', error);
+    }
   }
 
   async editTask(index: number) {
@@ -60,7 +57,7 @@ export class PendingTasksPage implements OnInit {
     if (newDescription !== null) task.description = newDescription;
     if (newDueDate !== null) task.dueDate = new Date(newDueDate).toISOString();
 
-    await Storage.set({ key: `tasks_${userEmail}`, value: JSON.stringify(this.tasks) });
+    await Preferences.set({ key: `tasks_${userEmail}`, value: JSON.stringify(this.tasks) });
     alert('Tarea actualizada exitosamente.');
     await this.loadTasks();
   }
@@ -72,19 +69,19 @@ export class PendingTasksPage implements OnInit {
     const userEmail = user.email;
     this.tasks.splice(index, 1);
 
-    await Storage.set({ key: `tasks_${userEmail}`, value: JSON.stringify(this.tasks) });
+    await Preferences.set({ key: `tasks_${userEmail}`, value: JSON.stringify(this.tasks) });
     alert('Tarea eliminada.');
     await this.loadTasks();
   }
 
   async logout() {
-    await Storage.remove({ key: 'user' });
+    await Preferences.remove({ key: 'user' });
     this.router.navigate(['/login']);
     alert('Has cerrado sesión.');
   }
 
   private async getCurrentUser() {
-    const { value } = await Storage.get({ key: 'user' });
+    const { value } = await Preferences.get({ key: 'user' });
     return value ? JSON.parse(value) : null;
   }
 }
