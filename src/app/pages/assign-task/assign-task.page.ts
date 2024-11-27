@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Preferences } from '@capacitor/preferences';
 import { Router } from '@angular/router';
+import { LocalNotifications } from '@capacitor/local-notifications';
 
 @Component({
   selector: 'app-assign-task',
@@ -37,6 +38,9 @@ export class AssignTaskPage {
     // Guarda las tareas actualizadas en el almacenamiento
     await Preferences.set({ key: `tasks_${userEmail}`, value: JSON.stringify(tasks) });
 
+    // Programar la notificación para esta tarea
+    await this.scheduleNotification(this.task.title, new Date(this.task.dueDate));
+
     alert('Tarea guardada con éxito.');
     this.router.navigate(['/pending-tasks']); // Redirige a la página de tareas pendientes
   }
@@ -50,5 +54,21 @@ export class AssignTaskPage {
   private async getCurrentUser() {
     const { value } = await Preferences.get({ key: 'user' });
     return value ? JSON.parse(value) : null;
+  }
+
+  private async scheduleNotification(taskTitle: string, taskDate: Date) {
+    await LocalNotifications.schedule({
+      notifications: [
+        {
+          id: new Date().getTime(), // Genera un ID único
+          title: 'Recordatorio de tarea',
+          body: `No olvides: ${taskTitle}`,
+          schedule: {
+            at: taskDate, // Programa la notificación para la fecha y hora de la tarea
+          },
+          sound: 'default', // Opcional: usa un sonido predeterminado
+        },
+      ],
+    });
   }
 }
